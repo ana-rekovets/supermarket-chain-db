@@ -40,37 +40,6 @@ supermarket-chain-db/
 ### Relational Schema
 ![Relational_Schema](Relational_Schema.png)
 
-```
-POINT_OF_SALE(point_id, name, country, city, postal_code, street_address)
-
-CUSTOMER(customer_id, first_name, last_name, phone, email)
-
-PRODUCT(product_id, name, brand, category, list_price)
-
-LOYALTY_CARD(card_id, issue_date, points_balance,
-             customer_id FK→CUSTOMER,          -- UNIQUE: enforces 1:1
-             point_id    FK→POINT_OF_SALE)
-
-PAYMENT_METHOD(point_id FK→POINT_OF_SALE, payment_method)  -- composite PK
-
-TRANSACTION(transaction_id, date, total_price,
-            customer_id     FK→CUSTOMER,
-            point_id        FK→POINT_OF_SALE,
-            payment_method  FK→PAYMENT_METHOD(point_id, payment_method))
-
-PRODUCT_IN_TRANSACTION(product_id     FK→PRODUCT,       -- composite PK
-                       transaction_id FK→TRANSACTION,
-                       quantity, unit_price)
-
-POINT_OFFERS_PRODUCT(point_id   FK→POINT_OF_SALE,       -- composite PK
-                     product_id FK→PRODUCT,
-                     quantity)
-
-POINTS_MOVEMENT(movements_id, movement_type, date, points_delta,
-                transaction_id FK→TRANSACTION (nullable),
-                card_id        FK→LOYALTY_CARD)
-```
-
 ---
 
 ## Key Design Decisions
@@ -94,19 +63,6 @@ POINTS_MOVEMENT(movements_id, movement_type, date, points_delta,
 
 ## ER Diagram
 ![ER Diagram](ER_Diagram.png)
-```
-POINT_OF_SALE ──(1,N)──< PAYMENT_METHOD
-      │ (1,N)
-      ├──────────────────< TRANSACTION (0,N) >── PRODUCT_IN_TRANSACTION (1,M) >── PRODUCT
-      │                         │ (0,N)                                                │
-      │                   POINTS_MOVEMENT                              POINT_OFFERS_PRODUCT
-      │ (0,N)                                                                      (1,N) │
-LOYALTY_CARD (1,1) ──── CUSTOMER                                                        │
-      │ (0,N)                                                          POINT_OF_SALE ───╯
-      ╰── POINTS_MOVEMENT
-```
-
-Full EER and relational schema diagrams are in the project report.
 
 ---
 
