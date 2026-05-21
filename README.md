@@ -1,6 +1,6 @@
 # Supermarket Chain — Relational Database (MySQL)
 
-**Course:** Databases · USI Lugano (M.Sc. Economics) · 2025–26  
+**Course:** Databases · USI Lugano · 2025–26  
 **Author:** Anastasiia Rekovets  
 **Engine:** MySQL 8.0
 
