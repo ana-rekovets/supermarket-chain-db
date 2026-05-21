@@ -38,7 +38,6 @@ supermarket-chain-db/
 | `POINTS_MOVEMENT` | Individual loyalty point earn/redeem events (full audit trail) |
 
 ### Relational Schema
-
 ```
 POINT_OF_SALE(point_id, name, country, city, postal_code, street_address)
 
@@ -92,7 +91,7 @@ POINTS_MOVEMENT(movements_id, movement_type, date, points_delta,
 ---
 
 ## ER Diagram
-
+![ER Diagram](project_v1.png)
 ```
 POINT_OF_SALE ──(1,N)──< PAYMENT_METHOD
       │ (1,N)
